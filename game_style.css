@@ -1,0 +1,71 @@
+body
+{
+    margin: auto;
+    font-family: 'Awesome';
+    background-color: #5f0101;
+}
+
+#game {
+	display: inline-block;
+	position: relative;
+}
+#game .cup {
+	cursor: pointer;
+	float: left;
+	margin: 2vw;
+	position: relative;
+	width: 10vw;
+}
+#game .ball {
+	font-family: Arial, Helvetica, sans-serif;
+	display: none;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	border: none;
+    color: white;
+	background-color: #ba0000;
+    padding: 1vw 2vw;
+    text-align: center;
+    text-decoration: none;
+    font-size: 2vw;
+    margin: 2vw;
+    cursor: pointer;
+    border-radius: 10px;
+}
+#game .yes {
+	font-family: Arial, Helvetica, sans-serif;
+	display: none;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	border: none;
+    color: white;
+	background-color: #04AA6D;
+    padding: 1vw 2vw;
+    text-align: center;
+    text-decoration: none;
+    font-size: 2vw;
+    margin: 2vw;
+    cursor: pointer;
+    border-radius: 10px;
+}
+#game-result {
+	display: none;
+	position: absolute;
+	top: 50%;
+	left: 0;
+	right: 0;
+	font-size: 1vw;
+	text-align: center;
+}
+#text-game {
+	font-family: Arial, Helvetica, sans-serif;
+	display: none;
+	color: white;
+	background-color: #c90303;
+	border-radius: 5px;
+	font-size: 1vw;
+	margin: 1vw;
+	padding: 1vw;
+}

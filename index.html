@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="icon/icon.png">
+    <link rel="stylesheet" href="style.css">
+    <title>Valentines</title>
+</head>
+<script src="script.js"></script>
+<body>
+    <audio id="bgm" src="audio/blue_by_yung-kai.mp3" autoplay loop></audio>
+    <div class="background"></div>
+    <div class="DIVmute-ctrl">
+        <img id="mute" class="mute-ctrl" src="images/mute.png" alt="mute" onclick="playAudio()" style="display: none;">
+        <img id="unmute" class="unmute-ctrl" src="images/unmute.png" alt="unmute" onclick="stopAudio()">
+    </div>
+    <div class="center">
+        <img class="resize dropshadow1" src="images/cute-love-bear-main-screen.gif" alt="cute-love-bear-main-screen">
+        <h1 class="font-resize">Will you be my valentine?</h1>
+        <div>
+            <button class="button button1" type="button">
+                <a href="yes.html">Yes</a>
+            </button>
+            <button class="button button2" type="button" onclick="moveButton()">No</button>
+        </div>
+            <p class="license" onclick="updateLicenseText()">Programmed by PromasterYTJava &copy</p>
+        <center>
+            <a href="https://www.youtube.com/@promasterytjava" target="_blank">
+                <img class="license-img" src="images/youtube-white-icon-colored.png" alt="youtube-white-icon-colored">
+            </a>
+            <a href="https://discord.gg/JAsmxecvjK" target="_blank">
+                <img class="license-img" src="images/discord-white-icon-colored.png" alt="discord-white-icon-colored">
+            </a>
+            <a href="https://x.com/8000Gaming" target="_blank">
+                <img class="license-img" src="images/twitter-white-icon-colored.png" alt="twitter-white-icon-colored">
+            </a>
+        </center>
+    </div>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Find the Button!</title>
+	<link rel="icon" href="icon/icon.png">
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="game_style.css">
+	<script src="script.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.transit/0.9.12/jquery.transit.min.js"></script>
+</head>
+<body>
+	<audio id="bgm" src="audio/blue_by_yung-kai.mp3" autoplay loop></audio>
+	<div class="background"></div>
+	<div class="DIVmute-ctrl">
+        <img id="mute" class="mute-ctrl" src="images/mute.png" alt="mute" onclick="playAudio()" style="display: none;">
+        <img id="unmute" class="unmute-ctrl" src="images/unmute.png" alt="unmute" onclick="stopAudio()">
+    </div>
+	<div class="center">
+		<h1 class="font-resize">Where is the <span style="color: red;">No</span> Button?</h1>
+		<div id="game">
+			<img class="cup" src="images/cup.png" alt="cup">
+			<img class="cup" src="images/cup.png" alt="cup">
+			<img class="cup" src="images/cup.png" alt="cup">
+			<div class="ball">No</div>
+			<div class="yes">Yes</div>
+			<div id="game-result"></div>
+		</div>
+		
+		<p id="text-game">WAIT! YOU SHOULD PLAY AGAIN!</p>
+		<p class="license" onclick="updateLicenseText()">Programmed by PromasterYTJava &copy</p>
+        <center>
+            <a href="https://www.youtube.com/@promasterytjava" target="_blank">
+                <img class="license-img" src="images/youtube-white-icon-colored.png" alt="youtube-white-icon-colored">
+            </a>
+            <a href="https://discord.gg/JAsmxecvjK" target="_blank">
+                <img class="license-img" src="images/discord-white-icon-colored.png" alt="discord-white-icon-colored">
+            </a>
+            <a href="https://x.com/8000Gaming" target="_blank">
+                <img class="license-img" src="images/twitter-white-icon-colored.png" alt="twitter-white-icon-colored">
+            </a>
+        </center>
+	</div>
+	<script>
+(function($)
+{
+	// DOM elems
+	var $game;
+	var $cups;
+	var $ball;
+	var $yes;
+	var $gameResult;
+	var $textGame;
+
+	function initGame()
+	{
+		// Config vars
+		var animSpeed = 400;
+		var intervalSpeed = animSpeed + 100;
+		var nbMaxSwaps = 5;
+		
+		// Game vars
+		var posBall;
+		var animsInterval;
+		var cupsWidth = $cups.outerWidth(true);
+		var nbCups = $cups.length;
+		var nbSwaps = 0;
+
+		// Animation
+		function move($elemToMove, dir, depth, nbMoves)
+		{
+			var distanceAnim = cupsWidth * nbMoves / 2;
+			var zindex = depth > 0 ? 5 : -5;
+			var scale = depth > 0 ? 1.25 : 0.75;
+
+			if(dir === 'left') dir = '-'; else dir = '+';
+
+			$elemToMove
+				.css('z-index', zindex)
+				.transition({ x: dir + '=' + distanceAnim, scale: scale }, { duration: animSpeed / 2, easing: 'linear' })
+				.transition({ x: dir + '=' + distanceAnim, scale: 1 }, { duration: animSpeed / 2, easing: 'linear', complete: function() {
+					$elemToMove.css('z-index', 'auto');
+					nbSwaps += 0.5;
+					if(nbSwaps >= nbMaxSwaps) {
+						clearInterval(animsInterval);
+						end();
+					}
+				}});
+		}
+
+		function swapElems($firstCup, $secondCup)
+		{
+			var posFirstCup = $firstCup.data('posCurrent');
+			var posSecondCup = $secondCup.data('posCurrent');
+			var nbMoves = Math.abs(posFirstCup - posSecondCup);
+
+			if(posFirstCup > posSecondCup) {
+				move($firstCup, 'left', 1, nbMoves);
+				move($secondCup, 'right', 0, nbMoves);
+			} else {
+				move($firstCup, 'right', 0, nbMoves);
+				move($secondCup, 'left', 1, nbMoves);
+			}
+
+			$firstCup.data('posCurrent', posSecondCup);
+			$secondCup.data('posCurrent', posFirstCup);
+		}
+
+		function animateCups()
+		{
+			var indexFirstCup = Math.floor(Math.random() * nbCups);
+			var indexSecondCup = (indexFirstCup + 1) % nbCups;
+			swapElems($cups.eq(indexFirstCup), $cups.eq(indexSecondCup));
+		}
+		
+		function start()
+		{
+			nbSwaps = 0;
+			posBall = Math.floor(Math.random() * nbCups);
+			$cups.each(function() { $(this).data('posStart', $(this).data('posCurrent')); });
+			$ball.css('left', posBall * cupsWidth).fadeIn().delay(600).fadeOut(function() {
+				animsInterval = setInterval(animateCups, intervalSpeed);
+			});
+		}
+
+		function end()
+		{
+			$game.on('click', '.cup', function()
+			{
+				var posStart = $(this).data('posStart');
+				var posEnd = $(this).data('posCurrent');
+
+				if(posBall === posStart) {
+					$game.off('click', '.cup');
+					$ball.css('left', posEnd * cupsWidth).stop(true, false).fadeIn().delay(2000).fadeOut();
+					$('#text-game').fadeIn(500).delay(2000).fadeOut(500);
+					animSpeed /=4;
+					setTimeout(start, 3000);
+				} else {
+					$yes.css('left', posEnd * cupsWidth).stop(true, false).fadeIn();
+					setTimeout(function() { window.location.href = 'yes.html'; }, 2000);
+				}
+				$gameResult.stop(true, false).fadeIn().delay(600).fadeOut();
+			});
+		}
+
+		function init()
+		{
+			$cups.each(function(i) { $(this).data({ posStart: i, posCurrent: i }); });
+			start();
+		}
+
+		init();
+	}
+
+	$(document).ready(function()
+	{
+		$game = $('#game');
+		$cups = $game.find('.cup');
+		$ball = $game.find('.ball');
+		$yes = $game.find('.yes');
+		$gameResult = $('#game-result');
+		$textGame = $('text-game');
+		initGame();
+	});
+})(jQuery);
+	</script>
+</body>
+</html>

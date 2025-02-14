@@ -78,3 +78,7 @@ window.onload = function () {
 
     setInterval(updateLicenseText, 2000);
 };
+function continueFunc(elem) {
+    document.getElementById('continueID').style.display="none";
+    document.querySelectorAll("video, audio").forEach((elem) => unmute(elem));
+}

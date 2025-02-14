@@ -109,3 +109,16 @@ a {
     margin: .3vw;
     display: block;
 }
+.continueClass {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: white;
+    font-size: 10vw;
+    background-color: rgba(65, 65, 65, 0.9);
+    width: 100%;
+    z-index: 9999;
+    cursor: pointer;
+}

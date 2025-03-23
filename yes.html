@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="style.css">
     <title>You said YES!</title>
 </head>
-<body>
+<body onload="updateLicenseText()">
     <audio class="aud" src="audio/blue_by_yung-kai.mp3" autoplay loop></audio>
     <div class="background"></div>
     <div class="audio-controls">
@@ -38,7 +38,7 @@
     <div class="center">
         <img class="resize dropshadow1" src="images/bear-kiss-bear-kisses.gif" alt="cute-love-bear-main-screen">
         <h1 class="font-resize">I knew you would say YES!</h1>
-            <p class="license" onclick="updateLicenseText()">Programmed by PromasterYTJava &copy</p>
+            <p class="license" onload="updateLicenseText()">Programmed by PromasterYTJava &copy</p>
         <center>
             <a href="https://www.youtube.com/@promasterytjava" target="_blank">
                 <img class="license-img" src="images/youtube-white-icon-colored.png" alt="youtube-white-icon-colored">
@@ -53,5 +53,27 @@
     </div>
 
     <script src="script.js"></script>
+    <script>
+        window.onload = function() {
+        const licenseElement = document.querySelector(".license");
+        const messagesLicense = [
+            "Programmed by PromasterYTJava ©",
+            "Made with ❤️ by PromasterYTJava ©",
+            "Coding since 2021... ©",
+            "PromasterYTJava is watching 👀 ©",
+            "This website runs on pure magic ✨ ©",
+            "Another masterpiece by PromasterYTJava! 🚀 ©"
+        ];
+
+        let index = 0;
+
+        function updateLicenseText() {
+            licenseElement.textContent = messagesLicense[index];
+            index = (index + 1) % messagesLicense.length;
+        }
+
+            setInterval(updateLicenseText, 2000);
+        };
+    </script>
 </body>
 </html>

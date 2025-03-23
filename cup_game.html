@@ -14,7 +14,7 @@
 	<link rel="stylesheet" href="style.css">
 	<link rel="stylesheet" href="game_style.css">
 </head>
-<body>
+<body onload="updateLicenseText()">
 	<audio class="aud" src="audio/blue_by_yung-kai.mp3" autoplay loop></audio>
     <div class="background"></div>
     <div class="audio-controls">
@@ -51,7 +51,7 @@
 			<p id="text-game">WAIT! YOU SHOULD PLAY AGAIN!</p>
 			<p id="text-game1">WAIT! YOU SHOULD PLAY AGAIN!</p>
 		</div>
-		<p class="license" onclick="updateLicenseText()">Programmed by PromasterYTJava &copy</p>
+		<p class="license" onload="updateLicenseText()">Programmed by PromasterYTJava &copy</p>
         <center>
             <a href="https://www.youtube.com/@promasterytjava" target="_blank">
                 <img class="license-img" src="images/youtube-white-icon-colored.png" alt="youtube-white-icon-colored">
@@ -68,6 +68,28 @@
 	<script src="script.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.transit/0.9.12/jquery.transit.min.js"></script>
+	<script>
+        window.onload = function() {
+        const licenseElement = document.querySelector(".license");
+        const messagesLicense = [
+            "Programmed by PromasterYTJava ©",
+            "Made with ❤️ by PromasterYTJava ©",
+            "Coding since 2021... ©",
+            "PromasterYTJava is watching 👀 ©",
+            "This website runs on pure magic ✨ ©",
+            "Another masterpiece by PromasterYTJava! 🚀 ©"
+        ];
+
+        let index = 0;
+
+        function updateLicenseText() {
+            licenseElement.textContent = messagesLicense[index];
+            index = (index + 1) % messagesLicense.length;
+        }
+
+            setInterval(updateLicenseText, 2000);
+        };
+    </script>
 	<script>
 (function($)
 {

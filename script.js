@@ -86,9 +86,9 @@ play.addEventListener('click', ()=> {
     audio.play()
 })
 
-window.onload = function () {
+window.onload = function() {
     const licenseElement = document.querySelector(".license");
-    const messages = [
+    const messagesLicense = [
         "Programmed by PromasterYTJava ©",
         "Made with ❤️ by PromasterYTJava ©",
         "Coding since 2021... ©",
@@ -100,8 +100,8 @@ window.onload = function () {
     let index = 0;
 
     function updateLicenseText() {
-        licenseElement.textContent = messages[index];
-        index = (index + 1) % messages.length;
+        licenseElement.textContent = messagesLicense[index];
+        index = (index + 1) % messagesLicense.length;
     }
 
     setInterval(updateLicenseText, 2000);

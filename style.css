@@ -47,6 +47,7 @@ body {
     margin: 0.4vw 0.2vw;
     cursor: pointer;
     border-radius: 10px;
+    z-index: 10;
 }
 .button1 {
     transition: 0.5s;

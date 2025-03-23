@@ -15,6 +15,11 @@ const messages = [
 let messageIndex = 0;
 var bgmJS = document.getElementById("bgm");
 
+let play = document.querySelector('.play')
+let audio = document.querySelector('.aud')
+let vol = document.querySelector('#vol')
+let num = document.querySelector('.num')
+
 function moveButton() {
     const button2 = document.querySelector('.button2');
     const yesButton = document.querySelector('.button1');
@@ -58,6 +63,29 @@ function unmute(elem) {
     elem.muted = false;
     elem.play();
 }
+vol.oninput = function() {;
+    let volValue = vol.value;
+    
+    audio.volume = vol.value/100
+    num.innerHTML = vol.value;
+
+    if (audio.volume == 0) {
+        document.getElementById('unmute').style.display="none";
+        document.getElementById('mute').style.display="block";
+    }
+    else {
+        document.querySelectorAll("video, audio").forEach((elem) => unmute(elem));
+        document.getElementById('unmute').style.display="block";
+        document.getElementById('mute').style.display="none";
+        elem.muted = false;
+        elem.play();
+    }
+}
+
+play.addEventListener('click', ()=> {
+    audio.play()
+})
+
 window.onload = function () {
     const licenseElement = document.querySelector(".license");
     const messages = [

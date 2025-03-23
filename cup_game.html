@@ -7,16 +7,28 @@
 	<link rel="icon" href="icon/icon.png">
 	<link rel="stylesheet" href="style.css">
 	<link rel="stylesheet" href="game_style.css">
-	<script src="script.js"></script>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.transit/0.9.12/jquery.transit.min.js"></script>
 </head>
 <body>
-	<audio id="bgm" src="audio/blue_by_yung-kai.mp3" autoplay loop></audio>
-	<div class="background"></div>
-	<div class="DIVmute-ctrl">
-        <img id="mute" class="mute-ctrl" src="images/mute.png" alt="mute" onclick="playAudio()" style="display: none;">
-        <img id="unmute" class="unmute-ctrl" src="images/unmute.png" alt="unmute" onclick="stopAudio()">
+	<audio class="aud" src="audio/blue_by_yung-kai.mp3" autoplay loop></audio>
+    <div class="background"></div>
+    <div class="audio-controls">
+        <div class="volume-slider-parent">
+            <div class="DIVmute-ctrl">
+                <img id="mute" class="mute-ctrl" src="images/mute.png" alt="mute" onclick="playAudio()" style="display: none;">
+                <img id="unmute" class="unmute-ctrl" src="images/unmute.png" alt="unmute" onclick="stopAudio()">
+            </div>
+            <div class="volume-slider">
+                <label class="slider">
+                    <input type="range" name="volume" id="vol" class="level" />
+                  </label>
+                <div>
+                    <span class="num">50</span>
+                </div>
+            </div>
+            <div class="volume-slider-button">
+                <img class="volume-slider-button-arrow" src="images/arrow.png" alt="arrow">
+            </div>
+        </div>
     </div>
 	<div class="center">
 		<h1 class="font-resize">Where is the <span style="color: red;">No</span> Button?</h1>
@@ -29,7 +41,10 @@
 			<div id="game-result"></div>
 		</div>
 		
-		<p id="text-game">WAIT! YOU SHOULD PLAY AGAIN!</p>
+		<div>
+			<p id="text-game">WAIT! YOU SHOULD PLAY AGAIN!</p>
+			<p id="text-game1">WAIT! YOU SHOULD PLAY AGAIN!</p>
+		</div>
 		<p class="license" onclick="updateLicenseText()">Programmed by PromasterYTJava &copy</p>
         <center>
             <a href="https://www.youtube.com/@promasterytjava" target="_blank">
@@ -43,6 +58,10 @@
             </a>
         </center>
 	</div>
+
+	<script src="script.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.transit/0.9.12/jquery.transit.min.js"></script>
 	<script>
 (function($)
 {

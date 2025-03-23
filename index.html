@@ -3,18 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="icon/icon.png">
+    <link rel="icon" href="icon/icon.png">
     <link rel="stylesheet" href="style.css">
     <title>Valentines</title>
 </head>
-<script src="script.js"></script>
 <body>
-    <audio id="bgm" src="audio/blue_by_yung-kai.mp3" autoplay loop></audio>
+    <audio class="aud" src="audio/blue_by_yung-kai.mp3" autoplay loop></audio>
     <div id="continueID" class="continueClass" onclick="continueFunc()" onclick="playAudio()">Click to Continue</div>
     <div class="background"></div>
-    <div class="DIVmute-ctrl">
-        <img id="mute" class="mute-ctrl" src="images/mute.png" alt="mute" onclick="playAudio()" style="display: none;">
-        <img id="unmute" class="unmute-ctrl" src="images/unmute.png" alt="unmute" onclick="stopAudio()">
+    <div class="audio-controls">
+        <div class="volume-slider-parent">
+            <div class="DIVmute-ctrl">
+                <img id="mute" class="mute-ctrl" src="images/mute.png" alt="mute" onclick="playAudio()" style="display: none;">
+                <img id="unmute" class="unmute-ctrl" src="images/unmute.png" alt="unmute" onclick="stopAudio()">
+            </div>
+            <div class="volume-slider">
+                <label class="slider">
+                    <input type="range" name="volume" id="vol" class="level" />
+                  </label>
+                <div>
+                    <span class="num">50</span>
+                </div>
+            </div>
+            <div class="volume-slider-button">
+                <img class="volume-slider-button-arrow" src="images/arrow.png" alt="arrow">
+            </div>
+        </div>
     </div>
     <div class="center">
         <img class="resize dropshadow1" src="images/cute-love-bear-main-screen.gif" alt="cute-love-bear-main-screen">
@@ -38,5 +52,7 @@
             </a>
         </center>
     </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

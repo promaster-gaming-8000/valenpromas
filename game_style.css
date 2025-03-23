@@ -61,6 +61,7 @@ body
 }
 #text-game {
 	font-family: Arial, Helvetica, sans-serif;
+	position: fixed;
 	display: none;
 	color: white;
 	background-color: #c90303;
@@ -68,4 +69,14 @@ body
 	font-size: 1vw;
 	margin: 1vw;
 	padding: 1vw;
+}
+#text-game1 {
+	font-family: Arial, Helvetica, sans-serif;
+	display: block;
+	color: rgba(255, 255, 255, 0);
+	border-radius: 5px;
+	font-size: 1vw;
+	margin: 1vw;
+	padding: 1vw;
+	user-select: none;
 }

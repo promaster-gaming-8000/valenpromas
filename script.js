@@ -81,11 +81,9 @@ vol.oninput = function() {;
         elem.play();
     }
 }
-
 play.addEventListener('click', ()=> {
     audio.play()
 })
-
 window.onload = function() {
     const licenseElement = document.querySelector(".license");
     const messagesLicense = [

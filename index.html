@@ -16,37 +16,43 @@
 <body onload="updateLicenseText()">
     <audio class="aud" src="audio/blue_by_yung-kai.mp3" autoplay loop></audio>
     <div id="continueID" class="continueClass" onclick="continueFunc()" onclick="playAudio()" onclick="updateLicenseText()">Click to Continue</div>
-    <div class="background"></div>
+    <div class="background" onclick="EXIThamburgerbtn()"></div>
     <div class="navbar">
-        <div class="audio-controls">
-            <div class="volume-slider-parent">
-                <div class="DIVmute-ctrl">
-                    <img id="mute" class="mute-ctrl" src="images/mute.png" alt="mute" onclick="playAudio()" style="display: none;">
-                    <img id="unmute" class="unmute-ctrl" src="images/unmute.png" alt="unmute" onclick="stopAudio()">
-                </div>
-                <div class="volume-slider">
-                    <label class="slider">
-                        <input type="range" name="volume" id="vol" class="level" />
-                      </label>
-                    <div>
-                        <span class="num">50</span>
+        <div class="navbar-contents" style="height: 0px;">
+            <div class="audio-controls">
+                <div class="volume-slider-parent">
+                    <div class="DIVmute-ctrl">
+                        <img id="mute" class="mute-ctrl" src="images/mute.png" alt="mute" onclick="playAudio()" style="display: none;">
+                        <img id="unmute" class="unmute-ctrl" src="images/unmute.png" alt="unmute" onclick="stopAudio()">
+                    </div>
+                    <div class="volume-slider">
+                        <label class="slider">
+                            <input type="range" name="volume" id="vol" class="level" />
+                          </label>
+                        <div>
+                            <span class="num">50</span>
+                        </div>
+                    </div>
+                    <div class="volume-slider-button">
+                        <img class="volume-slider-button-arrow" src="images/arrow.png" alt="arrow">
                     </div>
                 </div>
-                <div class="volume-slider-button">
-                    <img class="volume-slider-button-arrow" src="images/arrow.png" alt="arrow">
-                </div>
+            </div>
+            <div id="snackbar">Some text some message..</div>
+            <div class="switch-parent">
+                <span class="LDM-font">LDM</span>
+                <label class="switch" id="switchMobile">
+                    <input onclick="LDMswitchfunc()" class="LDMswitch" type="checkbox">
+                    <span class="LDMslider round"></span>
+                </label>
             </div>
         </div>
-        <div id="snackbar">Some text some message..</div>
-        <div class="switch-parent">
-            <span class="LDM-font">LDM</span>
-            <label class="switch" id="switchMobile">
-                <input onclick="LDMswitchfunc()" class="LDMswitch" type="checkbox">
-                <span class="LDMslider round"></span>
-            </label>
+        <div class="hamburger-btn" onclick="hamburgerbtn()">
+            <p class="hamburger-header">Options:</p>
+            <img class="hamburger-btn-img" src="images/arrow.png" alt="arrow">
         </div>
     </div>
-    <div class="center">
+    <div class="center" onclick="EXIThamburgerbtn()">
         <img id="cutelovebear" class="resize dropshadow1" src="images/cute-love-bear-main-screen.gif" alt="cute-love-bear-main-screen">
         <h1 class="font-resize">Will you be my valentine?</h1>
         <div>
@@ -71,13 +77,45 @@
 
     <script src="script.js"></script>
     <script>
+        var mediaFiveHundMaxWith = window.matchMedia("(max-width: 500px)")
+
+        function matchMediaFiveHund(mediaFiveHundMaxWith) {
+            if (mediaFiveHundMaxWith.matches) {
+                document.querySelector('.navbar-contents').style.height="0px";
+                document.querySelector('.hamburger-btn-img').style.transform="rotateZ(0deg)";
+            } else {
+                document.querySelector('.navbar-contents').style.height="auto";
+                document.querySelector('.hamburger-btn-img').style.transform="rotateZ(0deg)";
+            }
+        }
+        matchMediaFiveHund(mediaFiveHundMaxWith);
+
+        mediaFiveHundMaxWith.addEventListener("change", function() {
+            matchMediaFiveHund(mediaFiveHundMaxWith);
+        })
+        function hamburgerbtn() {
+
+            if (document.querySelector('.navbar-contents').style.height == "0px") {
+                document.querySelector('.navbar-contents').style.height="130px";
+                document.querySelector('.hamburger-btn-img').style.transform="rotateZ(180deg)";
+            } else {
+                document.querySelector('.navbar-contents').style.height="0px";
+                document.querySelector('.hamburger-btn-img').style.transform="rotateZ(0deg)";
+            }
+        }
+        function EXIThamburgerbtn() {
+            if (mediaFiveHundMaxWith.matches) {
+                document.querySelector('.navbar-contents').style.height="0px";
+                document.querySelector('.hamburger-btn-img').style.transform="rotateZ(0deg)";
+            }
+        }
         function isMobileDevice() {
             return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || 
                 /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(navigator.userAgent || navigator.vendor);
         }
 
         if (isMobileDevice()) {
-            alert("!!MOBILE DEVICE DETECTED!!\nLow detail mode is enabled on automatic to reduce performance issues!");
+            alert("!!MOBILE DEVICE DETECTED!!\nLow detail mode is enabled automatically to reduce performance issues!");
             var LDMswitchJS1 = document.getElementById('switchMobile').click();
         }
                 function LDMswitchfunc() {
